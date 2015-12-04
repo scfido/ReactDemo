@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using Microsoft.Framework.DependencyInjection;
 using React.AspNet;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Dnx.Runtime;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNet.Mvc.Formatters;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNet5
 {

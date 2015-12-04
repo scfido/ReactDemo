@@ -4,14 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Http;
-using React.AspNet;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Dnx.Runtime;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNet.Mvc.Formatters;
 using Microsoft.AspNet.StaticFiles;
-using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AspNet5
 {
@@ -26,8 +25,8 @@ namespace AspNet5
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc((option)=> {
-                var jsonOutput= option.OutputFormatters.OfType<JsonOutputFormatter>().Single();
+            services.AddMvc((option) => {
+                var jsonOutput = option.OutputFormatters.OfType<JsonOutputFormatter>().Single();
                 jsonOutput.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
                 var jsonInputs = option.InputFormatters.OfType<JsonInputFormatter>().ToArray();
@@ -36,14 +35,14 @@ namespace AspNet5
                     json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 }
             });
-            services.AddReact();
+            //services.AddReact();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             // Initialise ReactJS.NET. Must be before static files.
-            app.UseReact(config =>
-            {
+            //app.UseReact(config =>
+            //{
                 // If you want to use server-side rendering of React components,
                 // add all the necessary JavaScript files here. This includes
                 // your components as well as all of their dependencies.
@@ -59,7 +58,7 @@ namespace AspNet5
                 //config
                 //    .SetLoadBabel(false)
                 //    .AddScriptWithoutTransform("~/Scripts/bundle.server.js");
-            });
+            //});
 
             // Add the platform handler to the request pipeline.
             app.UseIISPlatformHandler();
@@ -70,7 +69,7 @@ namespace AspNet5
                 DefaultFileNames = new string[] { "index.html", "index.htm" }
             });
             app.UseStaticFiles();
-            
+
             // Add MVC to the request pipeline.
             app.UseMvc();
         }
