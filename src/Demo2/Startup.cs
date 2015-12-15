@@ -13,7 +13,7 @@ using Microsoft.AspNet.StaticFiles;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNet5
+namespace WorkLog
 {
     public class Startup
     {

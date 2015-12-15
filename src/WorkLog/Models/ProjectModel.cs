@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace WorkLog.Models
 {
-    public class CommentModel
+    public class ProjectModel
     {
-        [Required]
-        public string Author { get; set; }
+        public int Id { get; set; } = 0;
 
         [Required]
-        public string Text { get; set; }
+        public string Title { get; set; }
+
+        public int TaskCount { get; set; } = 0;
+
     }
 }

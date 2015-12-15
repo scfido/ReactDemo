@@ -1,4 +1,11 @@
-﻿import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/actionTypes'
+﻿import { 
+    ADD_TODO, 
+    DELETE_TODO, 
+    EDIT_TODO, 
+    COMPLETE_TODO, 
+    COMPLETE_ALL, 
+    CLEAR_COMPLETED 
+} from '../constants/actionTypes'
 
 const initialState = [
   {
