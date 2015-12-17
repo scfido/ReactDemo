@@ -5,7 +5,7 @@ import Contents from '../components/contents'
 class App extends Component {
     render() {
         return (
-          <div className="container">
+          <div>
               <Projects />
               <Contents />
           </div>

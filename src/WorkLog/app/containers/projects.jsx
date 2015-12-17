@@ -2,7 +2,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import AddProjectButton from '../components/projects/addProjectButton'
-import NewProjectForm from '../components/projects/newProjectForm'
 import ProjectList from '../components/projects/projectList'
 import * as Actions from '../actions/projects'
 
@@ -15,13 +14,34 @@ class Projects extends Component {
         this.props.actions.getProjects();
     }
 
+    handleNewProject(cancel){
+        this.props.actions.newView(cancel)
+    }
+
+    handleEditProject(id, cancel){
+        if(cancel)
+            this.props.actions.endEdit(id)
+        else
+            this.props.actions.beginEdit(id)
+    }
+
     render() {
         return (
-          <div className="container">
-             <ProjectList projects={this.props.project.projects} />
-             <NewProjectForm onSubmit={this.props.actions.newProject} />
-             <AddProjectButton />
-          </div>
+            <div className="my-sidebar">
+                <div className="myCss-left-float-bg"></div>
+                <div className="myCss-left-float">
+                    <ProjectList 
+        projects={this.props.project.projects} 
+        onNewProject={this.handleNewProject.bind(this)}
+        onSubmitNewProject={this.props.actions.newProject}
+        onEditProject={this.handleEditProject.bind(this)}
+        onSubmitEditProject={this.props.actions.editProject}
+                    />
+                </div>
+                <div className="myCss-left-float-foot">
+                    <AddProjectButton />
+                </div>
+            </div>
         )
     }
 }

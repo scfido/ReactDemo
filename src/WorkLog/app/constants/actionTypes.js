@@ -2,7 +2,8 @@
 const ActionTypes = {
     Project: {
         NEW_VIEW :"",                   //显示新项目添加控件
-        EDIT_VIEW :"",                  //显示项目编辑控件
+        BEGIN_EDIT :"",                  //开始编辑项目
+        END_EDIT :"",                  //结束项目编辑
         NEW_PROJECT:"",                 //添加新项目
 
         GET_PROJECTS :"",               //向服务器请求项目列表

@@ -5,14 +5,14 @@ import TaskList from '../components/tasks/taskList'
 class Contents extends Component {
     render() {
         return (
-          <div className="container">
+          <div className="myCss-content">
               <NewTaskForm />
+              <br />
               <TaskList />
-              <hr />
-              <TaskList />
+              <p className="text-muted">33个任务已完成</p>
           </div>
         )
     }
-}
+    }
 
 export default Contents

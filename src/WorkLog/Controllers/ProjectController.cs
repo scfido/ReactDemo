@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using WorkLog.Models;
+using System.Threading;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -67,7 +68,8 @@ namespace WorkLog.Controllers
             {
                 if (TryValidateModel(project))
                 {
-                    project.Id = projects.Count;
+                    project.Id = projects.Count + 1;
+                    Thread.Sleep(500);
                     projects.Add(project);
                 }
             }

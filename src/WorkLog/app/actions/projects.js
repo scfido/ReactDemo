@@ -6,8 +6,12 @@ export function newView(show = true) {
     return { type: ActionTypes.Project.NEW_VIEW, show:show }
 }
 
-export function editView(show=true) {
-    return { type: ActionTypes.Project.EDIT_VIEW,show:show }
+export function beginEdit(id) {
+    return { type: ActionTypes.Project.BEGIN_EDIT, id:id}
+}
+
+export function endEdit(id) {
+    return { type: ActionTypes.Project.END_EDIT, id:id}
 }
 
     //服务端操作
@@ -53,13 +57,13 @@ export function newProject(title) {
         return fetch('api/project', {
             method: 'post',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(project)
-        }).then(response => {
-                project.syncing = false;
-                dispatch(updateProjectItem(project));
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(project)
+            }).then(response => {
+                    project.syncing = false;
+                    dispatch(updateProjectItem(project));
             }
           )
 
@@ -68,6 +72,24 @@ export function newProject(title) {
     }
 }
 
+export function editProject(project) {
+    project.syncing = true;
+    project.editing = false;
+    dispatch(updateProjectItem(project))
+
+    return fetch('api/project', {
+        method: 'put',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+            body: JSON.stringify(project)
+        }).then(response => {
+            project.syncing = false;
+            dispatch(updateProjectItem(project));
+        }
+      )
+}
 
 export function setProjectItems(projects) {
     return { type: ActionTypes.Project.SET_PROJECT_ITEMS, projects }

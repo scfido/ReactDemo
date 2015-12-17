@@ -5,9 +5,9 @@ class Projects extends Component {
 
     render() {
         return (
-            <div>
-              <button>添加</button>
-            </div>
+        <div className="input-group">
+            <span className="input-group-addon">+</span>
+        </div>
         )
     }
 }

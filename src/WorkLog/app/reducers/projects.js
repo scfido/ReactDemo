@@ -4,7 +4,6 @@ const initialState = {
     loading:false,
     editingId : -1,
     newProjectView : false,
-    editProjectView : false,
     projects:[
         {
             title: 'VGS II',
@@ -19,8 +18,17 @@ export default function projects(state = initialState, action) {
         case ActionTypes.Project.NEW_VIEW :
             return Object.assign({}, state, {newProjectView: action.show});
 
-        case ActionTypes.Project.EDIT_VIEW :
-            return Object.assign({}, state, {editProjectView: action.show});
+        case ActionTypes.Project.BEGIN_EDIT :
+            return Object.assign({}, state, {...state, projects: state.projects.map(project =>
+                     Object.assign({}, project, {editing: (project.id === action.id )})
+                )}
+            );
+
+        case ActionTypes.Project.END_EDIT :
+            return Object.assign({}, state, {...state, projects: state.projects.map(project =>
+                     Object.assign({}, project, {editing: false})
+                )}
+            );
 
         case ActionTypes.Project.GET_PROJECTS :
             return Object.assign({}, state, {loading: true});
@@ -29,14 +37,14 @@ export default function projects(state = initialState, action) {
             return Object.assign({}, state, {loading: true});
 
         case ActionTypes.Project.PUT_PROJECT :
-            {
+{
                 let nextState = Object.assign({}, state, {loading: false});
                 return nextState.projects.map(project =>{
                     if(project.id === action.id)
                         project.title = action.title
-                }
+}
                 )
-            }
+}
 
         case ActionTypes.Project.DELETE_PROJECT :
             return state.projects.filter(project =>
@@ -46,11 +54,12 @@ export default function projects(state = initialState, action) {
         case ActionTypes.Project.INSERT_PROJECT_ITEM :
             let nextState = Object.assign({}, state, ...state);
             if(isNaN(action.project.id)){
-                let newId = state.projects.reduce((maxId, p) => {
-                    let id = isNaN(p.newId) ? 0 : p.newId;
-                    return Math.max(id, maxId)}, -1);
-                newId +=1;
-                action.project.newId = newId;
+                let newId = state.projects.reduce((minId, p) => {
+                    let id = isNaN(p.id) ? 0 : p.id;
+                    let b=0;
+                    return Math.min(id, minId)}, 9999999);
+                newId -=1;
+                action.project.id = newId;
             }
 
             nextState.projects = [action.project, ...nextState.projects];
@@ -75,5 +84,14 @@ export default function projects(state = initialState, action) {
 
         default:
                 return state
+    }
+
+    function _updateProjectWhere(projectByID, where, updates) {
+        const newProjectsByID = {...projectByID};
+        const updatedProjects = _.filter(projectByID, where)
+          .map(project => ({...project, ...updates}))
+          .forEach(project => newProjectsByID[project.id] = project);
+
+        return newProjectsByID;
     }
 }

@@ -5,9 +5,10 @@ class NewTaskForm extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text" placeholder="添加任务..." />
-            </div>
+         <div className="input-group">
+              <span className="input-group-addon">+</span>
+              <input type="text" className="form-control" placeholder="添加任务" />
+        </div>        
         )
     }
 }
