@@ -62,7 +62,7 @@ namespace WorkLog.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]ProjectModel project)
+        public int Post([FromBody]ProjectModel project)
         {
             if (project != null)
             {
@@ -70,9 +70,12 @@ namespace WorkLog.Controllers
                 {
                     project.Id = projects.Count + 1;
                     Thread.Sleep(500);
-                    projects.Add(project);
+                    projects.Insert(0, project);
+                    return project.Id;
                 }
             }
+
+            return -1;
         }
 
         // PUT api/values/5

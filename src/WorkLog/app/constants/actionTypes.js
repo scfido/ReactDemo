@@ -1,10 +1,9 @@
 ﻿
 const ActionTypes = {
     Project: {
-        NEW_VIEW :"",                   //显示新项目添加控件
-        BEGIN_EDIT :"",                  //开始编辑项目
-        END_EDIT :"",                  //结束项目编辑
-        NEW_PROJECT:"",                 //添加新项目
+        NEW_PROJECT_FROM :"",           //显示新项目添加控件
+        BEGIN_EDIT :"",                 //开始编辑项目
+        END_EDIT :"",                   //结束项目编辑
 
         GET_PROJECTS :"",               //向服务器请求项目列表
         POST_PROJECT :"",               //在服务器创建项目

@@ -1,0 +1,300 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.bs-docs-nav {
+    text-shadow: 0 -1px 0 rgba(0,0,0,.15);
+    background-color: #09C;
+    border-color: #463265;
+    box-shadow: 0 1px 0 rgba(255,255,255,.1);
+}
+
+    .bs-docs-nav .navbar-collapse {
+        border-color: #463265;
+    }
+
+    .bs-docs-nav .navbar-brand {
+        color: #fff;
+    }
+
+    .bs-docs-nav .navbar-nav > li > a {
+        color: #cdbfe3;
+    }
+
+        .bs-docs-nav .navbar-nav > li > a:hover {
+            color: #fff;
+        }
+
+    .bs-docs-nav .navbar-nav > .active > a,
+    .bs-docs-nav .navbar-nav > .active > a:hover {
+        color: #fff;
+        background-color: #069;
+    }
+
+    .bs-docs-nav .navbar-toggle {
+        border-color: #563d7c;
+    }
+
+        .bs-docs-nav .navbar-toggle:hover {
+            background-color: #069;
+            border-color: #463265;
+        }
+
+
+.my-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+}
+
+.my-sidebar {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 200px;
+}
+
+.myCss-left-float-bg {
+    position: fixed;
+    float: left;
+    background: #f3f3f3;
+    width: 200px;
+    height: 100%;
+    z-index: 1;
+}
+
+.myCss-left-float-foot {
+    position: fixed;
+    width: 200px;
+    bottom: 0;
+    text-align: center;
+    z-index: 3;
+    padding: 5px;
+}
+
+.myCss-left-float {
+    position: absolute;
+    float: left;
+    width: 200px;
+    z-index: 2;
+    padding-top: 65px;
+    padding-bottom: 15px;
+}
+
+.myCss-left-meu {
+    width: 200px;
+}
+
+.myCss-left-meu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .myCss-left-meu li {
+        overflow: hidden;
+        position: relative;
+    }
+
+        .myCss-left-meu li i {
+            color: #999;
+            border-radius: 4px;
+            font-size: 10px;
+            padding: 2px 4px;
+        }
+
+        .myCss-left-meu li a img {
+            margin-right: 5px;
+        }
+
+        .myCss-left-meu li a div {
+            float: left;
+            padding: 3px;
+        }
+
+        .myCss-left-meu li a button {
+            display: none;
+        }
+
+        .myCss-left-meu li a {
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+
+            .myCss-left-meu li a:hover {
+                background: #D5D5D5;
+            }
+
+            .myCss-left-meu li a:focus {
+                background: #fff;
+            }
+
+                .myCss-left-meu li a:focus button {
+                    display: inline-block;
+                }
+
+a.act {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    background: #fff;
+}
+
+    a.act button {
+        display: inline-block !important;
+        outline: none !important;
+    }
+
+
+.myCss-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 65px 25px 15px 225px;
+}
+
+.myCss-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .myCss-list li {
+        overflow: hidden;
+        position: relative;
+        padding: 5px 15px;
+    }
+
+        .myCss-list li:before {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            top: 0;
+            left: 3px;
+            background: #ccc;
+            content: "";
+        }
+
+        .myCss-list li:first-child:before {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            top: 15px;
+            left: 3px;
+            background: #ccc;
+            content: "";
+        }
+
+        .myCss-list li:after {
+            position: absolute;
+            border-radius: 50%;
+            background: #CCC;
+            width: 8px;
+            height: 8px;
+            content: "";
+            top: 10px;
+            left: 0;
+        }
+
+        .myCss-list li:first-child:after {
+            position: absolute;
+            border-radius: 50%;
+            background: #0C0;
+            width: 8px;
+            height: 8px;
+            content: "";
+            top: 10px;
+            left: 0;
+        }
+
+
+        .myCss-list li span {
+            float: left;
+            margin-right: 15px;
+        }
+
+.divP {
+    overflow: hidden;
+    line-height: 32px;
+}
+
+    .divP img {
+        width: 32px;
+        height: 32px;
+    }
+
+.divP-1 {
+    width: 80px;
+    float: left;
+}
+
+.divP-2 {
+    width: 50px;
+    float: left;
+    margin-right: 5px;
+}
+
+.divP-3 {
+    min-width: 360px;
+    float: left;
+}
+
+.divP p {
+    clear: both;
+    padding: 5px;
+    background: #f6f6f6;
+    overflow: hidden;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.divP a {
+    padding-top: 8px;
+    display: inline-block;
+}
+
+a.listV {
+    display: inline-block;
+    border-left: 1px solid #CCC;
+    padding: 0 5px;
+}
+
+a.pop {
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #00CCCC;
+    width: 32px;
+    height: 32px;
+    position: relative;
+}
+
+    a.pop img {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+    }
+
+    a.pop:hover {
+        border: 1px solid #06C;
+    }
+
+    a.pop:focus {
+        border: 1px solid #06C;
+    }
+
+.padding-sm {
+    padding: 5px;
+}
+
+.myCss-meu-overflow {
+    max-height: 450px;
+    overflow: auto;
+}

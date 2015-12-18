@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 
 //视图
 export function newView(show = true) {
-    return { type: ActionTypes.Project.NEW_VIEW, show:show }
+    return { type: ActionTypes.Project.NEW_PROJECT_FROM, show:show }
 }
 
 export function beginEdit(id) {
@@ -57,38 +57,44 @@ export function newProject(title) {
         return fetch('api/project', {
             method: 'post',
             headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(project)
-            }).then(response => {
-                    project.syncing = false;
-                    dispatch(updateProjectItem(project));
-            }
-          )
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        })
+        .then(response => response.json())
+        .then(id => {
+            project.syncing = false;
+            project.id = id;
+            dispatch(updateProjectItem(project, id));
+        })
+          
 
         // 在实际应用中，还需要
         // 捕获网络请求的异常。
     }
 }
 
-export function editProject(project) {
-    project.syncing = true;
-    project.editing = false;
-    dispatch(updateProjectItem(project))
-
-    return fetch('api/project', {
-        method: 'put',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-            body: JSON.stringify(project)
-        }).then(response => {
-            project.syncing = false;
-            dispatch(updateProjectItem(project));
+export function editProject(id, props) {
+    return function (dispatch) {
+        const editProps ={
+            syncing: true,
+            editing:false
         }
-      )
+        dispatch(updateProjectItem(id, Object.assign(editProps, props)))
+        fetch('api/project').then(response => response.json())
+        //return fetch('api/project', {
+        //    method: 'put',
+        //    headers: {
+        //        'Accept': 'application/json',
+        //        'Content-Type': 'application/json'
+        //    },
+        //    body: JSON.stringify(project)
+        //}).then(response => {
+            dispatch(updateProjectItem(id, {syncing : false}));
+        //}
+          //)
+    }
 }
 
 export function setProjectItems(projects) {
@@ -99,10 +105,11 @@ export function insertProjectItem(project) {
     return { type: ActionTypes.Project.INSERT_PROJECT_ITEM, project }
     }
 
-export function updateProjectItem(project) {
+export function updateProjectItem(id, props) {
     return { 
         type: ActionTypes.Project.UPDATE_PROJECT_ITEM, 
-        project: project
+        id:id ,
+        props: props,
     }
 }
 

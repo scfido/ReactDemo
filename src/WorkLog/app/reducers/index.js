@@ -1,9 +1,9 @@
 ﻿import { combineReducers } from 'redux'
-import projects from './projects'
+import projectReducer from './projects'
 import tasks from './tasks'
 
 const rootReducer = combineReducers({
-    project : projects,
+    project : projectReducer,
     task : tasks
 })
 
